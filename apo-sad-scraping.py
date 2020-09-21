@@ -50,15 +50,15 @@ for x in range(0, 10):
             
 import pandas as pd
 
-df_author = pd.DataFrame(list,columns=['Author'])
+df_author = pd.DataFrame(list,columns=['author'])
 df_author
 
-df_frases = pd.DataFrame(list,columns=['Frases'])
+df_frases = pd.DataFrame(list,columns=['frases'])
 df_frases
 
-df_frases['Frases'].to_csv('frases.csv', encoding='ansi', index=False)
+df_frases['frases'].to_csv('frases.csv', encoding='ansi', index=False)
 
-df_author['Author'].to_csv('author.csv', encoding='ansi', index=False)
+df_author['author'].to_csv('author.csv', encoding='ansi', index=False)
 
 pip install mysql-connector-python
 
@@ -73,18 +73,8 @@ mydb = mysql.connector.connect(
 
 print(mydb)
 
-for i in list:
+for i in range(0,len(frases)):
     mycursor = mydb.cursor()
-    sql = "INSERT INTO posts (frases, author) VALUES ('%s','%s')" % (1,1)
+    sql = "INSERT INTO frases (frase,autor) VALUES ('%s','%s')" %(frases[i],autores[i])
     mycursor.execute(sql)
-    mydb.commit()
-    
-    
-    mycursor = mydb.cursor()
-sql = "SELECT * FROM posts"
-mycursor.execute(sql)
-
-myresult = mycursor.fetchall()
-
-for x in myresult:
-  print(x)
+    mydb.commit
